@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clock</title>
+</head>
+
+<body>
+  <table>
+    <tr>
+      <th>hr</th>
+      <th>min</th>
+      <th>sec</th>
+    </tr>
+    <tr>
+      <td class="hour-display">xx</td>
+      <td class="min-display">xx</td>
+      <td class="sec-display">xx</td>
+    </tr>
+  </table>
+      <div class="clock">
+        <div class="clock-face">
+          <div class="hand hour-hand"></div>
+          <div class="hand min-hand"></div>
+          <div class="hand second-hand"></div>
+        </div>
+      </div>
+
+
+      <style>
+        html {
+          background: #e6e6e6 url(https://plus.unsplash.com/premium_photo-1680265343689-0d8a86d1a97a?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+          background-size: cover;
+          font-family: 'helvetica neue';
+          text-align: center;
+          font-size: 10px;
+        }
+
+        body {
+          margin: 0;
+          font-size: 2rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          min-height: 100vh;
+        }
+
+        .clock {
+          width: 30rem;
+          height: 30rem;
+          border: 20px solid white;
+          border-radius: 50%;
+          margin: 50px auto;
+          position: relative;
+          padding: 2rem;
+          box-shadow: 
+              0 0 0 4px rgba(0,0,0,0.1)
+              inset 0 0 0 3px #EFEFEF,
+              inset 0 0 10px black,
+              0 0 10px rgba(0,0,0,0.2);
+        }
+
+        .clock-face {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          transform: translateY(-3px); /* for the height of the clock hands*/
+        }
+
+        .hand {
+           width: 50%;
+           height: 6px;
+           background: black;
+           position: absolute;
+           top: 50%;
+           transform-origin: 100%;
+           transform: rotate(90deg);
+        }
+
+        table {
+          flex-grow: 0;
+          align-self: center;
+        }
+
+        table, th, td {
+          margin: 5px;
+          padding-inline: 1em;
+          border: 1px solid darkgray;
+          border-collapse: collapse;
+          font-size: 1em;
+        }
+
+        @media (max-width: 767px) {
+          body {
+            justify-content: flex-start;
+          }
+
+          .clock {
+            width: 23rem;
+            height: 23rem;
+          }
+        }
+      </style>
+
+      <!-- <script src="../NavBar.js"></script> -->
+      <script src="script.js"></script>
+
+</body>
+</html>
