@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Variables & JS</title>
+</head>
+<body>
+  <h2>Update CSS Variables with <span class="h1">JS</span></h2>
+
+  <div class="controls">
+    <div class="input-container">
+      <label for="spacing">Spacing:</label>
+      <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+    </div>
+    <div class="input-container">
+      <label for="blur">Blur:</label>
+      <input type="range" id="blur" name="blur" min="0" max="25" value="3" data-sizing="px">
+    </div>
+    <div class="input-container">
+      <label for="base">Base Color:</label>
+      <input type="color" id="base" name="base" value="#e6e6e6">
+    </div>
+  </div>
+
+  <img src="https://plus.unsplash.com/premium_photo-1690960322448-cd1f4869d193?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="image">
+
+  <style>
+    :root {
+      --spacing: 10px;
+      --blur: 10px;
+      --base: #ffc600;
+    }
+
+    img {
+      padding: var(--spacing);
+      background: var(--base);
+      filter: blur(var(--blur));
+      max-width: 95vw;
+    }
+
+    .h1 {
+      color: var(--base);
+    }
+
+    /* misc styles, nothing to do with CSS variables */
+
+    body {
+      text-align: center;
+      background-color: #193549;
+      color: white;
+      font-family: 'helvetica neue', sans-serif;
+      font-weight: 100;
+      font-size: 50px;
+    }
+
+    .controls {
+      margin-bottom: 50px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .input-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+    }
+
+    label {
+      width: 300px;
+    }
+
+    input {
+      width: 100px;
+    }
+  </style>
+
+  <script src="script.js"></script>
+</body>
+</html>
