@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML5 Canvas</title>
+</head>
+<body>
+  <div class="instructions">
+    <p>Desktop only ... Click & Drag your mouse anywhere on this page </p>
+  </div>
+  <canvas id="draw" width="800" height="800"></canvas>
+
+  <script src="script.js"></script>
+
+  <style>
+    html, body {
+      margin: 0;
+      width: 100vw;
+    }
+    
+    .instruction {
+      position: fixed;
+      left: 40%;
+      margin: 0 auto;
+      padding-inline: 4vh;
+      border-bottom: 1px dotted #252525;
+    }
+
+    .instruction p {
+      font-family: 'calibri';
+      font-size: 0.6em;
+      color: #252525;
+    }
+
+    p {
+      font-weight: bolder;
+      font-size: 1.5em;
+      padding: 10px;
+      margin: 0;
+      background-color: rgb(7, 6, 8);
+      color: white;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+  </style>
+</body>
+</html>
