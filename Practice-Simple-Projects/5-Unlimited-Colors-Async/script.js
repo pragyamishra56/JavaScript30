@@ -9,7 +9,7 @@ const randomColor = function () {
 
 let intervalId;
 const startChangingColor = function () {
-  if (!intervalId) {
+  if (!intervalId) { // only start the interval if its intervalId === null or it's not already running
     intervalId = setInterval(changeBgColor, 1000); // change color every 1 second
   }
 
