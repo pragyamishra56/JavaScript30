@@ -86,7 +86,7 @@ async function consumePromiseFive () {
 consumePromiseFive();
 
 
-// 
+//  
 async function getAllUsers() {
   try {
     const response = await fetch('https://jsonplaceholder.typicode.com/users');
@@ -98,3 +98,11 @@ async function getAllUsers() {
 }
 getAllUsers();
 
+
+// 
+fetch('https://jsonplaceholder.typicode.com/users') // returns a promise
+.then((response) => { // first then 
+  return response.json() // convert the response to json
+}).then((data) => { // second then
+  console.log(data); // log the data
+}) // this is the end of the promise chain
