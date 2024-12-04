@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>React</title>
+</head>
+
+<body>
+  <button>Button Clicked</button>
+</body>
+
+<script>
+  class React {
+    constructor() {
+      this.library = "React"
+      this.server = "https://localhost:300"
+
+      // requirement
+      document
+        .querySelector('button')
+        .addEventListener('click', this.handleClick
+        .bind(this)) // bind this to the event listener
+
+    }
+    handleClick() {
+      console.log("button clicked");
+      // console.log(this.server);
+      console.log(this);
+    }
+  }
+
+  const app = new React()
+</script>
+
+</html>
+
+<!-- bind() use kiya gaya hai taaki this ka reference React class ke instance par fix rahe.
+Button click hone par handleClick method call hota hai.
+bind() ke bina this galat context me chala jata (e.g., DOM element).
+Is code ka purpose this ka sahi context maintain karna hai event listener ke andar.  -->
