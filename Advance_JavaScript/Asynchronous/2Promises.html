@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promises</title>
+</head>
+
+<body>
+  <p>JavaScript promises which are mechanism for handling async operations in
+    a way more manageable and structured way compared ro using
+    callbacks and worrying about the pyramid
+  </p>
+
+  <p>It introduced as part of ES6, which
+    now call is 2015
+
+  <ul>
+    <li>Promises in JavaScript are object</li>
+    <li>Promise can be in one of three stages:
+      <ul>
+        <li><b>Pending</b> - It doesn't yet have a value</li>
+        <li><b>Resolved</b> - It has successfully obtained a value</li>
+        <li><b>Rejected</b> - It failed to obtain a value for some reason</li>
+      </ul>
+    </li>
+
+    <li>The only way to access the resolved or
+      Rejected value is to chain a method on the end of the promise(or await it)
+    </li>
+  </ul>
+
+  <p>
+  <h3>.then and .catch </h3>
+  <li>Promises provide a .then and a.catch, which both accept callbacks.</li>
+  <li>The callback to .then will run if the promise is resolved,
+    and has access to the promise's resolved value.</li>
+
+  <li>The callback to .catch will run if the promise is Rejected,
+    and typically has access to some reason behind the Rejected.
+  </li>
+  </p>
+  <h2>Benefits Of Promises Over Callbacks</h2>
+  <p><li>Easier to write good functions:
+    <ul>
+      <li>Each step doesn't have be tied directly to next step</li>
+    <li>With promises, .then method can just return value for next
+      without having to itself know what comes next
+    </li>
+    </ul>
+  </li></p>
+</body>
+
+<script>
+
+  const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
+  const url = `${BASE_URL}`;
+  // fetch(url);
+  // fetch(url)
+  //   .then(function (data) {
+  //     console.log(data);
+  //   })
+  //   .catch(function (err) {
+  //     console.log("ERR!!", err);
+  //   });
+
+  // 
+
+
+  fetch(`${BASE_URL}/1`)
+    .then((res1) => {
+      console.log("Response1", res1);
+      return fetch(`${BASE_URL}/2`);
+    })
+    .then((res2) => {
+      console.log("Response2", res2);
+      return fetch(`${BASE_URL}/3`);
+    })
+    .then((res3) => {
+      console.log("Response3", res3);
+      return fetch(`${BASE_URL}/4`);
+    })
+    .then((res4) => {
+      console.log("Response4", res4);
+    })
+    .catch((err) => {
+      console.log("In the Catch error!!", err);
+    });
+</script>
+
+</html>
