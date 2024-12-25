@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Callbacks</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: fixed;
+      background-color: #333232;
+    }
+    h1 {
+      color: rgb(236, 225, 15)
+    }
+    p {
+      color: white;
+    }
+    ul {
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>Callbacks Will Always Be Useful</h1>
+  <p>First two cases will always be done with Callbacks:</p>
+  <ul>
+    <li>function programming patterns</li>
+    <li>Event-driven programming</li>
+  </ul>
+  <button id="btn">Click Me</button>
+  <p>Sequential callbacks can lead to hard-to-understand code,
+    This is often called <b>"callback hell"</b>
+  </p>
+</body>
+<script>
+
+// const btn = document.querySelector("#btn");
+function sayHi() {
+  alert("Hello");
+}
+// btn.addEventListener("click", sayHi);
+// setTimeout(sayHi,3000); // 3 seconds after that it will pop out
+setInterval(sayHi,2000)
+</script>
+</html>
