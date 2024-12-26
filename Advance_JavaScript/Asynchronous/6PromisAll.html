@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Many Calls, in Sequence</title>
+</head>
+
+<body>
+  <h2>Promise.all()</h2>
+  <ul>
+    <li>Promise.all accept an array of promises and returns a new promise</li>
+    <li>New Promise will resolve when every promise in array
+      resolves, and will be rejected if any promise in array is rejected
+    </li>
+    <br>
+    <h3>Promise.allSettled()</h3>
+    <li>Promise.allSettled accepts an array of promises and return a new promise</li>
+    <br>
+    <li>The promise resolves after all of the given promises have either fulfilled or rejected, with an array of their
+      outcomes
+      or with an array of objects that each describes the outcomes of each promise.
+    </li>
+    <h3>Promise.race</h3>
+    <h4>Many Calls, First One Wins</h4>
+    <li>Promise.race accepts an array of promises and returns a new promise</li>
+    <li>This new promise will resolve or reject as soon as
+      one promise in the array resolves or rejects.
+    </li>
+  </ul>
+</body>
+
+<script>
+  const BASE_URL = 'https://pokeapi.co/api/v2/pokemon';
+
+  // const lotsOfFetchCalls = [
+  //   fetch(`${BASE_URL}/1`),
+  //   fetch(`${BASE_URL}/2`),
+  //   fetch(`${BASE_URL}/3`),
+  //   fetch(`${BASE_URL}/4`),
+  //   // fetch(`http://nope.nope/5`),
+  //   fetch(`${BASE_URL}/5`),
+  //   fetch(`${BASE_URL}/6`),
+  // ];
+
+  // Promise.all(lotsOfFetchCalls)
+  //   .then((results) => {
+  //      console.log("Promise.all() is done and resolved!");
+  //      console.log(results);
+  //   })
+  //   .catch((e) => {
+  //     console.log("One of the promises was rejected");
+  //     console.log(e);
+  //   });
+
+
+  // async function getLotsOfPokemon() {
+  //   try {
+  //     const results = await Promise.all(lotsOfFetchCalls);
+  //     console.log("Promise.all() is done and resolved!");
+  //     console.log(results);
+  //   } catch (e) {
+  //     console.log("One of the promises was rejected");
+  //     console.log(e);
+  //   }
+  // }
+
+
+
+  // async function allSettledDemo() {
+  //   const GITHUB_BASE_URL = "https://api.github.com";
+
+  //   let elipP = fetch(`${GITHUB_BASE_URL}/users/elie`);
+
+  //   let joelp = fetch(`${GITHUB_BASE_URL}/users/joelburton`);
+
+  //   let badUrl = fetch('http://definitelynotrealsite.com');
+
+  //   let myP = fetch(`${GITHUB_BASE_URL}/users/pragyamishra56`);
+
+  //   let anotherbadUrl = fetch('http://definitelynotrealsite.com');
+
+  //   let results = await Promise.allSettled([
+  //     elipP,
+  //     joelp,
+  //     badUrl,
+  //     myP,
+  //     anotherbadUrl,
+  //   ]);
+
+  //   console.log(results);
+  //   const fulfilled = results.filter((r) => r.status === "fulfilled");
+  //   const rejected = results.filter((r) => r.status === "rejected");
+  //   console.log(fulfilled);
+  //   console.log(rejected);
+  // }
+
+
+  // Promise.race
+
+  const lotsOfFetchCalls = [
+    fetch(`http://nope.nope`),
+    fetch(`${BASE_URL}/1`),
+    fetch(`${BASE_URL}/2`),
+    fetch(`${BASE_URL}/3`),
+    fetch(`${BASE_URL}/4`),
+    // fetch(`http://nope.nope/5`),
+    fetch(`${BASE_URL}/6`),
+  ];
+
+  Promise.race(lotsOfFetchCalls)
+    .then((winner) => {
+      console.log(winner);
+    })
+    .catch((e) => console.log(e));
+
+
+</script>
+
+</html>

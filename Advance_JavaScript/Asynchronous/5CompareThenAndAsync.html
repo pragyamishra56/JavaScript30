@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comparing .then/catch and async/await</title>
+</head>
+
+<body>
+  <h2>Comparing .then/catch and async/await</h2>
+  <p>Comparison Between async/await and .then:
+    async/await:
+  <ul>
+    <li>Easier to read and write.
+    <li>Looks like synchronous code.</li>
+    <li>Use try/catch to handle errors.</li>
+  </ul>
+  <b>.then/.catch:</b>
+  <ul>
+    <li>Requires chaining promises.</li>
+    <li>Can become less readable for long promise chains.</li>
+  </ul>
+  </p>
+  <p> Comparing
+  <ul>
+    <li>Under the Hood, they do the same thing</li>
+    <li>aync/wait are the modern improvement
+      <ul>
+        <li>Code can be written more naturally</li>
+      </ul>
+    </li>
+  </ul>
+  </p>
+</body>
+
+<script>
+
+  // Promises ********
+
+  // const results = []
+
+  // const BASE_URL = 'https://pokeapi.co/api/v2/pokemon';
+  // fetch(`${BASE_URL}/1`).then((res) => {
+  //   results.push(res);
+  //   console.log("Request 1 finished!");
+  // });
+  // fetch(`${BASE_URL}/2`).then((res) => {
+  //   results.push(res);
+  //   console.log("Request 2 finished!");
+  // });
+  // fetch(`${BASE_URL}/3`).then((res) => {
+  //   results.push(res);
+  //   console.log("Request 3 finished!");
+  // });
+
+  // console.log("Waiting for requests to complete");
+
+
+  // Async Functions **********
+
+  // const BASE_URL = 'https://pokeapi.co/api/v2/pokemon';
+  // const results = []
+  // async function getPokemon1() {
+  //   const res = await fetch(`${BASE_URL}/1`);
+  //   results.push(res);
+  //   console.log("Request 1 finished!");
+  // };
+  // async function getPokemon2() {
+  //   const res = await fetch(`${BASE_URL}/2`);
+  //   results.push(res);
+  //   console.log("Request 2 finished!");
+  // };
+  // async function getPokemon3() {
+  //   const res = await fetch(`${BASE_URL}/3`);
+  //   results.push(res);
+  //   console.log("Request 3 finished!");
+  // };
+
+  // getPokemon1()
+  // getPokemon2()
+  // getPokemon3()
+
+  // console.log("Waiting for requests to complete");
+
+
+  // Async Patterns: Parallel Async Operations
+  const BASE_URL = 'https://pokeapi.co/api/v2/pokemon';
+  const results = []
+  async function getPokemon(num) {
+    const res = await fetch(`${BASE_URL}/${num}`);
+    results.push(res);
+    console.log(`Request ${num} finished!`);
+  };
+
+  getPokemon(1);
+  getPokemon(2);
+  getPokemon(3);
+
+
+  // Async Patterns: Sequential Async Operations
+
+  // .then promises *******
+  // const result = [];
+  // fetch(`${BASE_URL}/1`)
+  //   .then((res1) => {
+  //     results.push(res);
+  //     console.log("Response1", res1);
+  //     return fetch(`${BASE_URL}/2`);
+  //   })
+  //   .then((res2) => {
+  //     results.push(res);
+  //     console.log("Response2", res2);
+  //     return fetch(`${BASE_URL}/3`);
+  //   })
+  //   .then((res3) => {
+  //     results.push(res);
+  //     console.log("Response3", res3);
+  //     return fetch(`${BASE_URL}/4`);
+  //   });
+
+
+    // Async *********
+    async function getPokemonInSequence() {
+      const res1 = await fetch(`${BASE_URL}/1`);
+      console.log("Response1", res1);
+      const res2 = await fetch(`${BASE_URL}/2`);
+      console.log("Response2", res2);
+      const res3 = await fetch(`${BASE_URL}/3`);
+      console.log("Response3", res3);
+      const result = [res1, res2, res3];
+
+    }
+
+</script>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Building Own Promises</title>
+</head>
+<body>
+  <h2>Own Promises</h2>
+</body>
+
+<script>
+  // setTimeout(function() {
+  //   console.log("Hi")
+  // },3)
+
+  // function wait(duration) {
+  //   const p = new Promise(function (resolve, reject) {
+  //     setTimeout(function () {
+  //       resolve("this is the resolved value!");
+  //     }, duration); 
+  //   });
+  //   return p;
+  // }
+
+  // async function demo() {
+  //   console.log("hi");
+  //   const val = await wait(2000);
+  //   console.log("there");
+  //   console.log(val);
+  // } or
+
+  // wait(5000).then((val) => console.log(val));
+
+
+  function randomRejectResolve() {
+    return new Promise(function (resolve, reject) {
+      setTimeout(function () {
+        const rand = Math.random();
+        if(rand < 0.5) {
+          resolve("Awwww yeahhh resolved");
+        } else {
+          reject("Ohhnoo no Error!!!!");
+        }
+      }, 2000);
+    });
+  }
+
+  randomRejectResolve()
+    .then((val) => {
+      console.log("Inside 1st .then() callback", val);
+      return randomRejectResolve();
+    })
+    .then((val) => {
+      console.log("Inside 2nd .then() callback", val);
+      return randomRejectResolve();
+    })
+    .then((val) => {
+      console.log("Inside 3rd .then() callback", val);
+    })
+    .catch((e) => console.log("Inside Catch", e));
+</script>
+</html>
