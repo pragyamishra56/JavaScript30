@@ -1,0 +1,73 @@
+<!-- Async Await are language keywords for working with promises. -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Async/Await</title>
+</head>
+
+<body>
+  <h1>Async/Await</h1>
+  <p>
+  <ul>You can declare any function in JavaScript as async</ul>
+  </p>
+</body>
+<script>
+
+  async function hello() {
+    return "HI"; // async function always return promises!
+  }
+
+  const BASE_URL = 'https://pokeapi.co/api/v2/pokemon'
+  async function getFirstPokemon() {
+    const result = await fetch(`${BASE_URL}/1`);
+    console.log(result);
+  }
+
+  // using await keyword will pause execution of this function, 
+  // not of JavaScript itself
+
+  async function getFourPokemon() {
+    const res1 = await fetch(`${BASE_URL}/1`);
+    console.log(res1);
+
+    const res2 = await fetch(`${BASE_URL}/2`);
+    console.log(res2);
+
+    const res3 = await fetch(`${BASE_URL}/3`);
+    console.log(res3);
+
+    const res4 = await fetch(`${BASE_URL}/4`);
+    console.log(res4);
+  }
+
+  // fetch .then and .catch are used to handle promises
+  // async/await is just syntactic sugar for .then and .catch
+  // async/await is easier to read and write than .then and .catch
+  // async/await is more efficient than .then and .catch
+  // async/await is more readable than .then and .catch
+  // Catch method basically catch any error in a promise  chain
+
+  fetch(`${BASE_URL}/1`)
+    .then((res1) => {
+      console.log("Response1", res1);
+      return fetch(`${BASE_URL}/2`);
+    })
+    .then((res2) => {
+      console.log("Response2", res2);
+      return fetch(`${BASE_URL}/3`);
+    })
+    .then((res3) => {
+      console.log("Response3", res3);
+      return fetch(`${BASE_URL}/4`);
+    })
+    .then((res4) => {
+      console.log("Response4", res4);
+    })
+
+
+</script>
+
+</html>
