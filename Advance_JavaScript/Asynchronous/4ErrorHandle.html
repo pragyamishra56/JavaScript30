@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Error Handling In Async/Await </title>
+</head>
+
+<body>
+  <h1>Error Handling</h1>
+</body>
+
+<script>
+  // How do we handle rejected promises when we're 
+  // working with async functions ?
+  // We can use try/catch blocks to handle errors in async functions.
+  // With regular promises and then and catch we use the catch method .
+  // But with async/await we use try/catch blocks.
+  // We have to do is use regular old try and catch
+
+  // async function fetchFakeWebsite() {
+  //   try {
+  //     const res1 = await fetch(`http://nope.nope`);
+  //     console.log(res1);
+  //   } catch  (e) {
+  //     console.log("Something went wrong...");
+  //     console(e);
+  //   }
+  // }
+  const BASE_URL = 'https://pokeapi.co/api/v2/pokemon'
+
+  async function getFourPokemon() {
+    try {
+      const res1 = await fetch(`${BASE_URL}/1`);
+      console.log(res1);
+
+      const res2 = await fetch(`${BASE_URL}/2`);
+      console.log(res2);
+
+      const res3 = await fetch(`http://nope.nope/3`);
+      console.log(res3);
+
+      const res4 = await fetch(`${BASE_URL}/4`);
+      console.log(res4);
+    } catch (e) {
+      console.log("Fetch went wrong!!")
+      console.log(e);
+    }
+  }
+</script>
+
+</html>
