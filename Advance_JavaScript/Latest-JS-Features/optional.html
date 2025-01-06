@@ -1,3 +1,30 @@
 <!-- // Optional Chaining -->
 <!-- // optional chaining allows reading the value of a property located deep within a -->
 <!-- // chain of connected objects without having to check each reference in the chain. -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Optional Chaining</title>
+ </head>
+ <body>
+
+  
+ </body>
+ <script>
+
+  const user = {
+    name: 'Lily',
+    address: {
+      city: 'Wonderland'
+    }
+  };
+
+  // Traditional way: Check each property in the chain
+  const city = user && user.address && user.address.city;
+
+  // With Optional Chaining
+  const optCity = user?.address?.city; // output: Wonderland
+ </script>
+ </html>
