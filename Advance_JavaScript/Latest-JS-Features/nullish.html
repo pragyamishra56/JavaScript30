@@ -1,0 +1,129 @@
+<!-- Nullish Coalescing -->
+<!-- The nullish coalescing operator (??)  is a logical operator that returns the
+ its right-hand operand when its left-hand operand is null or undefined, and otherwise
+returns its left-hand operand. This is a way to handle default values more
+predictably than using the OR (||) operator.-->
+
+
+
+<!-- ***** Numeric Separators ***** -->
+ <!-- Numeric separators enhance readability by allowing underscores (_)
+  to be inserted between digits in numeric literals. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+
+<script>
+  // ****Nullish Coalescing*****
+  // 0 ?? "default value!"
+  // 0
+  // 0 || "default value!"
+  // 'default value!'
+  // null ?? "default value!"
+  // default value!
+
+
+  // **** Numeric separators ******
+  // Long numeric values can be hard to parse at a glance
+  const withoutSeparator = 1000000000;
+
+  // Using the numeric separator for better readability
+  const withSeparator = 1_000_000_000;
+  console.log(withSeparator); // outputs: 1000000000
+
+
+  // ****** Array.prototype.at()******
+  const colors = ["red", 'yellow', 'green', 'orange']
+  colors.at(-1);
+  colors.at(1);
+
+
+
+  // ***** String replaceAll() *******
+  const str = "I really love JavaScript. My favorite language is JavaScript. JavaScript is awesome.";
+  str.replace(new RegExp("JavaScript", "g"), "React");
+   //Output:  I really love React. My favorite language is React. React is awesome.
+
+   str.replaceAll("JavaScript", "CSS");
+   // Output:  I really love CSS. My favorite language is CSS. CSS is awesome.
+
+
+  const str1 = "I really love JaVaScript. My favorite language is JAvaScript. JavaScript is awesome.";
+   str1.replaceAll(new RegExp("JavaScript", "ig"), "Tailwind"); 
+   // Output: I really love Tailwind. My favorite language is Tailwind. Tailwind is awesome.
+
+
+  //  ***** Logical Assignment ******
+  // Logical OR assignment (||=)
+  // Logical assignment are a combination of logical operators (&&, ||, or ??)
+  // and assignment expressions.
+
+  const todo = {priority: "", task: "Finish Editing Course"};
+  todo.priority ||= "low";
+  // todo.priority || (todo.priority = "low") // same as the above line but longer 
+
+  
+  // Logical AND
+  let num = 10;
+  num &&= 20; // 20
+
+  num && (num = 50)
+
+
+
+  // ***** Nullish Coalescing Operator (??) ******
+  // The nullish coalescing operator (??) returns the first operand if it is not 
+  // null or undefined; otherwise, it returns the second operand.
+  function doSomething(options = {}) {
+    options.timeout ??= 3000; // default timeout of 3 seconds
+    options.retries ??= 5; // default retries of 5
+    console.log(options);
+  }
+
+
+  //**** Promise.any ****
+  // Promise.any takes an iterable of Promise objects and returns a promise
+  // that is fulfilled by the first given promise to be fulfilled, or rejected if all of the given 
+  // promises are rejected.
+
+  const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
+
+  Promise.any([
+    fetch(`http://nope.nope`),
+    fetch(`${BASE_URL}/2`),
+    fetch(`${BASE_URL}/3`),
+    fetch(`${BASE_URL}/4`),
+    fetch(`${BASE_URL}/5`),
+    fetch(`${BASE_URL}/6`)
+  ]).then((firstToFinish) => {
+    console.log("THIS IS THE FIRST RESOLVED VALUE!", firstToFinish)
+  }).catch(e => {
+    console.log("OH NO, this means all promises were rejected", e)
+  })
+
+
+
+  const checkServiceA = checkAvailability('Service A');
+  const checkServiceB = checkAvailability('Service B');
+  const checkServiceC = checkAvailability('Service C');
+
+  Promise.any([checkServiceA, checkServiceB, checkServiceC])
+   .then(availableService => console.log('Available service: ', availableService))
+   .catch(error => console.log("All service are down:", error.errors));
+
+
+   
+  //  **** New OOP features: Private fields & Static Initialization Blocks
+  // This features allows you to have a block of code that runs once when the
+  // class is defined, useful for setting up shared state or configurations for classes.
+
+</script>
+</html>
