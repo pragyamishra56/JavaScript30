@@ -18,28 +18,82 @@
 </style>
 
 <body>
+  <h1 id="timer"></h1>
 
+  <button id="cancel">Cancel Redirection</button>
 </body>
 
 <script>
-  function showNotification(message, duration) {
-    const notification = document.createElement("DIV");
-    notification.innerText = message;
-    notification.className = "notification";
-    document.body.appendChild(notification);
+
+  // **** setTimeout()
+  // function showNotification(message, duration) {
+  //   const notification = document.createElement("DIV");
+  //   notification.innerText = message;
+  //   notification.className = "notification";
+  //   document.body.appendChild(notification);
 
 
-    // remove after duration
-    setTimeout(function () {
-      notification.remove();
-    }, duration);
-  }
+  //   // remove after duration
+  //   setTimeout(function () {
+  //     notification.remove();
+  //   }, duration);
+  // }
 
 
-  showNotification("Signed u in", 5000);
-  showNotification("I adore you", 3000);
-  showNotification("Please come again", 1000);
+  // showNotification("Signed u in", 5000);
+  // showNotification("I adore you", 3000);
+  // showNotification("Please come again", 1000);
 
+
+  // **** setInterval()
+  // function startCountdown(duration) {
+  //   let secondsRemaining = duration;
+  //   const h1 = document.getElementById("timer");
+  //   h1.innerHTML = secondsRemaining;
+  //   secondsRemaining -= 1;
+  //   setInterval(function () {
+  //     // console.log(secondsRemaining);
+  //     h1.innerHTML = secondsRemaining;
+  //     secondsRemaining -= 1;
+  //   }, 1000);
+  // }
+
+  // startCountdown(100);
+
+
+
+
+  // **** clearInterval()
+  // function startCountdown(duration) {
+  //   let secondsRemaining = duration;
+  //   const h1 = document.getElementById("timer");
+  //   h1.innerHTML = secondsRemaining;
+  //   secondsRemaining -= 1;
+  //   const intervalId = setInterval(function () {
+  //     // console.log(secondsRemaining);
+  //     h1.innerHTML = secondsRemaining;
+  //     secondsRemaining -= 1;
+
+
+  //     if(secondsRemaining < 0) {
+  //       clearInterval(intervalId);
+  //       h1.innerText = "Time is Up!"
+  //     }
+  //   }, 1000);
+  // }
+
+
+
+  // ***** clearTimeout() 
+  const cancelButton = document.querySelector("#cancel");
+  const timeoutId = setTimeout(() => {
+    window.location.href = "http://www.google.com";
+  }, 6000);
+
+  cancelButton.addEventListener("click", () => {
+    clearTimeout(timeoutId);
+    console.log("Aborted the Direction");
+  });
 </script>
 
 </html>
