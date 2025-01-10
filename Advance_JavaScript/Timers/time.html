@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timers</title>
+</head>
+<style>
+  .notification {
+    border: 1px solid green;
+    background-color: rgba(0, 128, 0, 0.437);
+    display: flex;
+    width: 200px;
+    padding: 1rem;
+    font-size: 2rem;
+  }
+</style>
+
+<body>
+
+</body>
+
+<script>
+  function showNotification(message, duration) {
+    const notification = document.createElement("DIV");
+    notification.innerText = message;
+    notification.className = "notification";
+    document.body.appendChild(notification);
+
+
+    // remove after duration
+    setTimeout(function () {
+      notification.remove();
+    }, duration);
+  }
+
+
+  showNotification("Signed u in", 5000);
+  showNotification("I adore you", 3000);
+  showNotification("Please come again", 1000);
+
+</script>
+
+</html>
