@@ -1,0 +1,142 @@
+<!-- JavaScript Generator Function -->
+ <!-- JavaScript can have generator functions -- functions that return a
+  Generator that can be lazily looped over: -->
+
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generators and yield </title>
+  </head>
+  <body>
+    
+    <h1>Generators and yield</h1>
+  </body>
+
+  <script>
+    function* evens(n) {
+      while (true) {
+        yield n;
+        n += 2;
+      }
+    }
+
+
+    // make a "Generator":
+    // will return even numbers 2+
+    let allEvens =  evens(2);
+
+    // lazily get the first 10 even numbers
+    for (let i=0; i < 10; i += 1) {
+      console.log(allEvens.next().value);
+    }
+
+    function* myPets() {
+      yield "Blue"
+      yield "Harry"
+      yield "Roger"
+      yield "Petri"
+    }
+
+
+    // Generators
+    const allImages = Array.form(
+      { length: 1000},
+      (_, i) => `https://placeimg.com/640/480/any?image=${i}`
+    );
+
+    function* getBatchOfImages(images, batchSize = 10) {
+      let currIndex = 0;
+      while (currIndex < images.length) {
+        yield images.slice(currIndex, currIndex + batchSize);
+        currIndex += batchSize;
+      }
+    }
+
+    const imageGen = getBatchOfImages(allImages);
+    // imageGen.next().value
+
+
+    // function* rangeGenerator(start, end) {
+    //   if (start <= end) {
+    //     // yield numbers in asc order
+    //     for (let i = start; i <= end; i++) {
+    //       yield i;
+    //     }
+    //   } else {
+    //     // yield numbers in desc order
+    //     for (let i = start; i >= end; i--) {
+    //       yield i;
+    //     }
+    //   }
+    // }
+
+
+
+
+    // The Scope Chain
+    // 1. In the local scope
+    // 2. Any outer functions
+    // 3. Global scope
+
+
+    // let age = 10;
+    // function outer() {
+    //   let age = "angles";
+    //   function inner() {
+    //     function superInner() {
+    //       console.log(age);
+    //     }
+    //     superInner();
+    //   }
+    //   inner();
+    // }
+
+
+    // Closures
+    // function createCounter() {
+    //   let count = 0;
+    //   return {
+    //     increment: function() {
+    //       return count++;
+    //     },
+    //     decrement: function() {
+    //       return count--;
+    //     },
+    //     getCount: function() {
+    //       return count;
+    //     }
+    //   };
+    // }
+
+
+    const counter = (function () {
+      let count = 0;
+      return {
+        increment: function() {
+          return count++;
+        },
+        decrement: function() {
+          return count--;
+        },
+        getCount: function() {
+          return count;
+        }
+      };
+    }) ();
+
+
+    // Closures: Factory Functions
+    function uniqueIdGenerator(prefix) {
+      let id = 0;
+      return function() {
+        id += 1;
+        return `${prefix}${id}`;
+      };
+    }
+
+    const getBookId = uniqueIdGenerator("book-");  // getBookId()
+    const getUserId = uniqueIdGenerator("user_");  // getUserId()
+  </script>
+  </html>
