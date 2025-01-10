@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="btn1">Click Me!</button>
+  <button id="btn2">Click Me!</button>
+  <button id="btn3">Click Me!</button>
+</body>
+
+<script>
+
+  // closures: Event Listener
+  function createCounterButton(id) {
+    const btn = document.getElementById(id);
+    let count = 0;
+    btn.addEventListener("click", function () {
+      count++;
+      btn.innerText = `Clicked ${count} times`;
+    });
+  }
+
+  createCounterButton("btn1");
+  createCounterButton("btn2");
+  createCounterButton("btn3");
+
+
+  // Closures: Loops
+
+  // for (var i =1; i<6; i++) {
+  //   (function (j) {
+  //     setTimeout(function () {
+  //       console.log(j);
+  //     }, 1000 * j);
+  //   }) ();
+  // }
+
+
+  for (var i = 1; i < 6; i++) {
+    setTimeout(function () {
+      console.log(i);
+    }, 1000 * i);
+  }
+</script>
+
+</html>
