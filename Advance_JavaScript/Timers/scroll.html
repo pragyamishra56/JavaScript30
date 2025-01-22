@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scroll To Top Demo</title>
+  <style>
+    body {
+      margin: 0;
+    }
+
+    .item {
+      height: 300px;
+    }
+
+    .one {
+      background-color: #388E3C;
+    }
+
+    .two {
+      background-color: #689F38;
+    }
+
+    .three {
+      background-color: #CDDC39;
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      border-radius: 10px;
+      color: white;
+      background-color: black;
+      border: none;
+      cursor: pointer;
+      font-size: 1.3rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="item one"></div>
+  <div class="item two"></div>
+  <div class="item three"></div>
+  <div class="item one"></div>
+  <div class="item two"></div>
+  <div class="item three"></div>
+  <div class="item one"></div>
+  <div class="item two"></div>
+  <div class="item three"></div>
+  <div class="item one"></div>
+  <div class="item two"></div>
+  <div class="item three"></div>
+  <div class="item one"></div>
+  <div class="item two"></div>
+  <div class="item three"></div>
+  <div class="item one"></div>
+  <div class="item two"></div>
+  <div class="item three"></div>
+  <div class="item one"></div>
+  <div class="item two"></div>
+  <div class="item three"></div>
+  <div class="item one"></div>
+  <div class="item two"></div>
+  <div class="item three"></div>
+  <div class="item one"></div>
+  <div class="item two"></div>
+  <div class="item three"></div>
+  <div class="item one"></div>
+  <div class="item two"></div>
+  <div class="item three"></div>
+  <div class="item one"></div>
+  <div class="item two"></div>
+  <div class="item three"></div>
+  <button class="back-to-top">Back To Top</button>
+</body>
+
+
+<script>
+function smoothScrollToTop() {
+  const duration = 1000;
+  const start = window.pageYOffset;
+  const end = 0;
+  const change = end - start;
+  let startTime = null;
+
+  function animateScroll(currentTime) {
+    if(startTime === null) startTime = currentTime;
+    const timeElapsed = currentTime - startTime;
+
+    const progress = Math.min(timeElapsed / duration, 1);
+
+    window.scrollTo(0, start + change * progress);
+    console.log(timeElapsed);
+    if(timeElapsed < duration) {
+      requestAnimationFrame(animateScroll);
+    }
+  }
+
+  requestAnimationFrame(animateScroll);
+}
+
+document
+  .querySelector(".back-to-top")
+  .addEventListener("click", smoothScrollToTop);
+
+</script>
+</html>
