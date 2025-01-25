@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Returning Function</title>
+</head>
+
+<body>
+  <p>
+    Higher order functions
+    <!-- A functions that receives another function as an argument 
+     , returns a function, or does both-->
+  </p>
+</body>
+
+<script>
+  function doTwice(func) {
+    func()
+    func()
+  }
+
+  doTwice(function () {
+    console.log("Hello How you doin..")
+  });
+
+
+  function multiplyBy(factor) { // returns a function
+    return function (num) { // returns a function 
+      return num * factor; // returns a value
+    };
+  }
+
+  const triple = multiplyBy(3); // 
+  const double = multiplyBy(2);
+
+
+
+
+  // **** Immutability ****
+
+  const num = [1, 2, 3, 4, 6];
+  function push(arr, value) {
+    return [...arr, value];
+  }
+
+  function removeLastItem(arr) {
+    return arr.slice(0, -2);
+  }
+  // removeLastItem(num)
+
+  const person = { name: "Sia" };
+
+
+
+
+
+  // ***** Recursion *****
+
+  // Factorial
+  // function factorial(n) {
+  //   let result = 1;
+  //   for(let i = n; i > 1; i--) {
+  //     result *= i;
+  //   }
+  //   return result;
+  // }
+
+  // factorial(3)
+
+
+  function factorial(n) {
+    if (n === 0 || n === 1) {
+      return 1;
+    }
+    return n * factorial(n - 1);
+  }
+
+
+
+  // ****** Partial Application With Bind
+
+  function greet(greeting, name) {
+    console.log(`${greeting}, ${name}!!!`);
+  }
+  function greets(greeting, name) {
+    console.log(`${greeting}, ${name} desu!!!`);
+  }
+
+  // greet('Hello', 'Sia')
+  const japaneseGreet = greet.bind(null, 'Konnichiwa'); // partial application
+  // japaneseGreet('Sia') --> Konnichiwa, Sia!!!
+  const spitefulGreet = greets.bind(null, 'watashi namaye wa')
+  // spitefulGreet('Sia') --> watashi namaye wa, Sia desu!!!
+
+
+
+  function multiply(a, b) {
+    return a * b;
+  }
+
+  function partial(func, ...fixedArgs) {
+    return function (...remainingArgs) {
+      return func(...fixedArgs, ...remainingArgs);
+    };
+  }
+
+  const doubles = partial(multiply, 2); // double(2) --> 4
+  const triples = partial(multiply, 3); // triple(30) --> 90
+
+
+
+  function fetchData(url, apiKey, params) {
+    const queryString = new URLSearchParams(params).toString();
+    const fullUrl = `${url}?${queryString}`;
+
+    console.log(`Sending request to ${fullUrl}`);
+    console.log(`With API key of ${apiKey}`);
+  }
+
+  const myApiKey = "my-secret-api-key";
+  const myApiUrl = "https://api.mywebsite.com/data";
+
+  const googleApiKey = "google-secret-api-key";
+  const googleApiUrl = "https://api.google.com/data";
+
+  const fetchMyAPI = partial(fetchData, myApiUrl, myApiKey);
+  const fetchGoogle = partial(fetchData, googleApiUrl, googleApiKey);
+
+  fetchMyAPI({ id: 1, sort: 'desc' });
+  // Sending request to https://api.mywebsite.com/data?id=1&sort=desc
+  fetchGoogle({ search: "anime" });
+
+
+
+  // ****** Composition *******
+
+  const add = (a, b) => a + b;
+  const square = (a) => a * a;
+
+  // add(square(2), square(3)); // 13
+  // square(add(2,5)); // 49
+
+  const addAndSquare = (a, b) => square(add(a, b));
+  // addAndSquare(2,3) --> 25
+
+
+  function splitWords(str) {
+    return str.split(" ");
+    // splitWords("konnichiwa minna") --> ["konnichiwa", "minna"]
+
+  }
+
+  function lowerCaseString(str) {
+    return str.toLowercase();
+  }
+
+  function joinWithDash(array) {
+    return array.join("-");
+    // joinWithDash(["konnichiwa", "minna"]) --> "konnichiwa-min
+  }
+
+  joinWithDash(splitWords(lowerCaseString("My Fav Func")));
+
+
+  // Writing A Fancier Compose Function
+  function compose(...functions) {
+    return function (data) {
+      return functions.reduceRight(
+        (result, func) => func(result), data);
+    };
+  }
+
+  function lowerCaseString(str) {
+    return str.toLowercase();
+  }
+
+  function replaceS(str) {
+    return str.replaceAll("a", "@");
+  }
+
+  function splitWords(str) {
+    return str.split(" ");
+  }
+
+  function joinWithDash(array) {
+    return array.join("-"); 
+  }
+
+  const sluggify = compose(joinWithDash, splitWords, lowerCaseString);
+
+
+
+  // ***** Curring ******
+  // Curring is a technique to convert a function that takes multiple arguments into a function that takes a single argument.
+  // This is useful when you want to delay the evaluation of a function until all the arguments argument available.
+  function add(a) {
+    return function(b) {
+      return function(c) {
+        return a + b + c;
+      }
+    }
+  }
+
+  add(1)(2)(3);
+
+
+
+  function add3(x,y,z) {
+    return x + y + z;
+  }
+
+  function curry(fn) {
+    return function curried(...args) {
+      if (args.length >= fn.length) {
+        return fn.apply(this, args);
+      } else {
+        return function (...args2) {
+          return curried.apply(this, args.concat(args2));
+        };
+      }
+    };
+  }
+</script>
+
+</html>

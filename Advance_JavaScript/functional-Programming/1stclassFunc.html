@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>First class functions</title>
+  <style>
+    h1 {
+      /* position: fixed; */
+      flex-direction: column;
+      /* align-items: center; */
+      justify-content: center;
+      background-color: teal;
+      color: white;
+      padding: 10px 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>First class functions</h1>
+</body>
+
+<script>
+  function greet(person) {
+    console.log(`Hello there, ${person}!`);
+  }
+
+  function hate(person) {
+    console.log(`I hate the tension of ${person}`);
+  }
+
+  function callWithBlue(func) {
+    func("Blue")
+  }
+
+  callWithBlue((color) => {
+    console.log(`${color} is the best color`);
+  });
+</script>
+</html>

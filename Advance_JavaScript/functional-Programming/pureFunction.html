@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pure Functions</title>
+</head>
+<body>
+  
+</body>
+
+<script>
+
+// Impure
+  let value = 2;
+  function squareAndUpdateValue(num) {
+    value = num * num;
+    return value;
+  }
+
+
+  // pure
+  function square(num) {
+    return num * num;
+  }
+
+
+  // Impure
+  const colors = ["yellow", "blue"]
+  function addToArray(arr, value) { // arr is the array 
+    return arr.push(value);
+  }
+  // addToArray(colors, "green") // this will change the original array
+  // colors ['yellow', 'blue', 'green'] 
+
+
+
+  // Pure
+  function pureAddToArray(arr, value) {
+    return [...arr, value]
+  } // returns a new array with the value added 
+</script>
+</html>
