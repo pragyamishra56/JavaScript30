@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Note App</title>
+</head>
+
+<body>
+  <textarea name="" id="noteInput" cols="30" rows="10"></textarea>
+  <button id="saveNote">Save Note</button>
+  <ul id="notesContainer"></ul>
+</body>
+
+<script>
+
+  const textArea = document.querySelector("#noteInput")
+  const saveButton = document.querySelector("#saveNote")
+  const container = document.querySelector("#notesContainer");
+
+  // const notes = ["Walk the dog", "remember to take the trash out"];
+  // localStorage.setItem("notes", JSON.stringify(notes));
+
+  const loadNotes = () => {
+    const notes = JSON.parse(localStorage.getItem("notes")) ?? [];
+    notes.forEach(createNoteElement);
+  };
+
+  const createNoteElement = (content) => {
+    const noteElement = document.createElement("li");
+    noteElement.textContent = content;
+    container.appendChild(noteElement);
+  }
+
+  saveButton.addEventListener("click", () => {
+    const noteContent = textArea.value.trim();
+    // const noteElement = document.createElement("li");
+    // noteElement.textContent = noteContent;
+    // container.appendChild(noteElement);
+    createNoteElement(noteContent);
+    textArea.value = ""
+    const notes = JSON.parse(localStorage.getItem("notes")) ?? [];
+    notes.push(noteContent);
+    localStorage.setItem("notes", JSON.stringify(notes));
+  })
+
+  loadNotes();
+
+
+</script>
+
+</html>

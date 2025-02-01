@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Session Storage</title>
+</head>
+<body>
+  <h1>Session Storage Demo</h1>
+  <form action="" id="checkoutForm">
+    <input type="text" name="firstName" placeholder="first name">
+    <input type="text" name="lastName" placeholder="last name">
+    <input type="email" name="email" placeholder="email">
+    <input type="text" name="city" placeholder="city">
+    <button>Submit</button>
+  </form>
+</body>
+
+<script>
+  const form = document.querySelector("#checkoutForm");
+  form.addEventListener("input", (e) => {
+    const { name, value } = e.target;
+    const formData = JSON.parse(sessionStorage.getItem("formData")) ?? {};
+    formData[name] = value;
+    sessionStorage.setItem("formData", JSON.stringify(formData));
+  });
+
+  const populateForm = () => {
+    const formData = JSON.parse(sessionStorage.getItem("formData")) ?? {};
+    for (let field in formData) {
+      form.elements[field].value = formData[field];
+    }
+  };
+
+  populateForm();
+</script>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LocalStorage</title>
+  <link rel="stylesheet" href="toggledarklight.css">
+</head>
+
+<body>
+  <button id="toggleMode">Switch Dark/Light Mode</button>
+  <h1>Local Storage Demo</h1>
+  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus fugiat, non quibusdam recusandae accusamus,
+    placeat dolore, pariatur facere qui tempora dolores! Laborum velit similique soluta distinctio adipisci numquam
+    reiciendis omnis.
+    Deserunt, recusandae. Consectetur, quae asperiores laborum nam assumenda, corrupti et, maxime beatae consequuntur
+    earum inventore dolores ad corporis ratione itaque quod tenetur saepe aliquid quibusdam facilis voluptatibus. Ipsa,
+    ratione possimus?
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae nisi eligendi fugit error, enim impedit velit totam?
+    Odit minus at reprehenderit deleniti ipsa cum quisquam sapiente minima, ad asperiores. Mollitia.
+    Non cupiditate consequatur magnam incidunt ipsam quos hic, dolor ullam vero quia eveniet qui eos necessitatibus
+    repellendus quibusdam libero aperiam a ex totam. Similique assumenda sapiente velit ipsa quod maxime?
+    A tempore tempora dignissimos fugiat voluptate quisquam earum similique laborum deserunt nemo, quo aspernatur rerum
+    asperiores, excepturi cumque hic, aut quae pariatur ipsam dolores libero enim. Qui beatae possimus eligendi?
+  </p>
+</body>
+
+<script>
+  const toggleButton = document.querySelector("#toggleMode");
+
+
+  const toggleTheme = () => {
+    if (document.body.classList.contains("dark-mode")) {
+      localStorage.setItem("theme", "light");
+      document.body.classList.remove("dark-mode");
+      toggleButton.textContent = "Enable Dark Mode"
+    } else {
+      localStorage.setItem("theme", "dark");
+      document.body.classList.add("dark-mode");
+      toggleButton.textContent = "Enable Light Mode"
+    }
+  };
+
+  // toggleButton.addEventListener("click", () => {
+  //   document.body.classList.toggle("dark-mode")
+  // });
+
+  const applySavedTheme = () => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+      document.body.classList.add("dark-mode");
+      toggleButton.textContent = "Enable Light Mode"
+    }
+  };
+  toggleButton.addEventListener("click", toggleTheme);
+  applySavedTheme();
+</script>
+
+</html>

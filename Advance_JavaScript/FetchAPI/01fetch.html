@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>APIs</title>
+</head>
+
+<body>
+  <h1>API -- Application Programming Interface</h1>
+  <h2>01 Fetch API</h2>
+  <p>Fetch handel the erros that only happend when there's a network error
+    or server side core error means the internet down that's is gonna be a problem
+    when you're trying to fetch.
+  </p>
+</body>
+
+<script>
+  // const POKE_URL = "https://pokeapi.co/api/v2/pokemon";
+
+  // async function getData() {
+  //   const response = await fetch(POKE_URL);
+  //   if (!response.ok) {
+  //     throw new Error(`Http error! Status: ${res.status}`);
+  //   }
+  //   const data = await response.json();
+  //   console.log(data);
+  // }
+
+  // fetch(POKE_URL)
+  //   .then((res) => res.json())
+  //   .then((data) => console.log(data));
+
+
+  // *** Error Handling ***
+
+  // fetch(POKE_URL)
+  //   .then((res) => {
+  //     console.log("The Fetch Worked!");
+  //     console.log(res);
+  //     if(!res.ok) {
+  //       throw new Error(`Http error! Status: ${res.status}`);
+  //     }
+  //     return res.json();
+  //   })
+  //   .then((data) => console.log("JSON DATA", data))
+  //   .catch((e) => {
+  //     console.log("Something went wrong with the fetch call!");
+  //     console.log(e);
+  //   });
+
+
+  // *** Sending Request Headers With Fetch
+  async function showMeHeaders() {
+    const headers = new Headers({"content-type": "application/json"});
+    try {
+      const res = await fetch("http://localhost:3001/showmeheaders", { headers });
+      const data = await res.json();
+      console.log("DATA", data);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  // showMeHeaders();
+
+  async function getSecret() {
+  const headers = new Headers({
+    "content-type": "application/json",
+    authorization: "Bearer kasjakj1283ajksdh91iasjkhd912",
+  });
+  try {
+    const res = await fetch("http://localhost:3001/secret", { headers });
+    const data = await res.json();
+    console.log("DATA ", data);
+  } catch (e) {
+    console.log(e);
+  }
+}
+
+// showMeHeaders();
+
+getSecret();
+
+</script>
+
+</html>
