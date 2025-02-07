@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IndexDB Storage</title>
+</head>
+<body>
+  
+</body>
+
+<script>
+  const open = indexedDB.open("MyFirstDB", 2);
+
+  open.onupgradeneeded = () => {
+    const db = open.result;
+    db.createObjectStore("MyUserStore", { keyPath: "id" });
+  };
+
+  open.onsuccess = () => {
+    console.log("SUCCESS!!!");
+    const db = open.result;
+    const transaction = db.transaction("MyUserStore", "readwrite");
+    const store = transaction.objectStore("MyUserStore");
+
+    const user = store.getAll();
+    user.onsuccess = () => {
+      console.log(user.result);
+    };
+  };
+
+  open.onerror = () => {
+    console.log("ERROR!");
+  };
+</script>
+</html>
